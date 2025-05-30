@@ -1,38 +1,16 @@
 #include <iostream>
 #include <iomanip>
-#include <limits> // Required for input validation
-#include <cctype> // For toupper() function
+#include <limits> 
+#include <cctype> 
 
-/*
-* Enhanced Unit Conversion Program
-* Features:
-* - Multiple conversion types (length, weight, time)
-* - Input validation
-* - Different output formatting per conversion type
-* - Conversion counter
-* - Uses while loop with initial priming read
-*/
 
 int main() {
     int choice;
-    char continueChoice = 'Y'; // Initialize for while loop
+
+    // Initialize for while loop
+    char continueChoice = 'Y'; 
     int conversionCount = 0;
 
-    // Explanation of loop choice:
-    /*
-    * Using a while loop with priming read instead of do-while:
-    * - The loop condition is checked BEFORE each iteration
-    * - Requires initializing continueChoice to 'Y' to enter first iteration
-    * - Provides more explicit control over loop entry
-    * - Avoids potential issues with uninitialized variables
-    * - Better demonstrates the concept of loop control variables
-    * 
-    * Comparison to original do-while:
-    * - Do-while executes body first, then checks condition
-    * - While loop checks condition first, then executes body
-    * - Both can achieve same functionality with proper setup
-    * - While loop makes the continuation condition more visible
-    */
 
     while (toupper(continueChoice) == 'Y') {
         // Display conversion menu
@@ -45,8 +23,10 @@ int main() {
 
         // Input validation - ensures choice is between 1-3
         while (std::cin.fail() || choice < 1 || choice > 3) {
-            std::cin.clear(); // Clear error flags
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Discard bad input
+            std::cin.clear(); 
+
+            // Discard bad input
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
             std::cout << "Invalid input. Please enter 1, 2, or 3: ";
             std::cin >> choice;
         }
@@ -54,19 +34,23 @@ int main() {
         double inputValue, convertedValue;
         std::string inputUnit, outputUnit;
 
-        // Get appropriate input prompt based on conversion type
+        // Get  input  based on conversion type
         switch (choice) {
-            case 1: // Length conversion
+            // Length conversion
+            case 1: 
                 std::cout << "Enter the distance in kilometers: ";
                 inputUnit = "kilometers";
                 outputUnit = "miles";
                 break;
-            case 2: // Weight conversion
+
+             // Weight conversion
+            case 2:
                 std::cout << "Enter the weight in kilograms: ";
                 inputUnit = "kilograms";
                 outputUnit = "pounds";
                 break;
-            case 3: // Time conversion
+            // Time conversion
+            case 3:
                 std::cout << "Enter the time in hours: ";
                 inputUnit = "hours";
                 outputUnit = "minutes";
@@ -82,26 +66,28 @@ int main() {
 
         // Perform the conversion
         switch (choice) {
-            case 1: convertedValue = inputValue * 0.621371; break; // km to miles
-            case 2: convertedValue = inputValue * 2.20462; break; // kg to lbs
-            case 3: convertedValue = inputValue * 60; break;      // hours to mins
+            case 1: convertedValue = inputValue * 0.621371; break;
+            case 2: convertedValue = inputValue * 2.20462; break;
+            case 3: convertedValue = inputValue * 60; break;      
         }
 
         // Display formatted result
         std::cout << "Converted " << inputUnit << ": " << std::fixed;
         if (choice == 1 || choice == 2) {
-            std::cout << std::setprecision(2) << convertedValue; // 2 decimal places for length/weight
+            std::cout << std::setprecision(2) << convertedValue; 
         } else {
-            std::cout << std::setprecision(0) << convertedValue; // whole numbers for time
+            std::cout << std::setprecision(0) << convertedValue;
         }
         std::cout << " " << outputUnit << std::endl;
 
-        conversionCount++; // Track total conversions
+
+         // Track total conversions
+        conversionCount++;
 
         // Prompt for continuation
         std::cout << "\nDo you want to perform another conversion? (y/n): ";
         std::cin >> continueChoice;
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear buffer
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
     }
 
     // Final output showing total conversions

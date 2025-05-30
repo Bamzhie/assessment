@@ -75,7 +75,7 @@ int main() {
         std::cout << "Do you want to perform another conversion? (y/n): ";
         std::cin >> continueChoice;
 
-        // Clear input buffer
+        // Clear input 
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     } while (continueChoice == 'y' || continueChoice == 'Y');
