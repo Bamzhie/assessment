@@ -19,7 +19,10 @@ string toLower(string str) {
 }
 
 int main() {
-    unique_ptr<Book[]> books(new Book[MAX_BOOKS]); // Smart pointer to array of Books
+
+    
+    // Smart pointer to array of Books
+    unique_ptr<Book[]> books(new Book[MAX_BOOKS]); 
     int bookCount = 0;
     char choice;
     
