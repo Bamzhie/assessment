@@ -5,7 +5,7 @@ using namespace std;
 
 const int MAX_STUDENTS = 30;
 const int PASSING_GRADE = 50;
-const int SENTINEL = -1;
+const int SENTINEL = -1; // Sentinel value to stop input
 
 int main() {
     int grades[MAX_STUDENTS];
